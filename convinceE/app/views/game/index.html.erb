@@ -34,7 +34,6 @@ function checkGameStatus(){
                 });
 	}
 	function registerForGame(type){
-		alert(type);
 		$.ajax({
 			url: "<%=request.base_url%>/game/request_game",
 			data: {
@@ -44,8 +43,6 @@ function checkGameStatus(){
 			dataType: "text",
 			success: function(ret) {
 				setInterval (checkGameStatus, 500);
-				alert(ret);
-
 			},
 			error: function(xhr, status, errorThrown) {
 				alert("Sorry, there was a problem!");
