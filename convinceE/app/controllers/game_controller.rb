@@ -7,10 +7,19 @@ class GameController < ApplicationController
 		#Get user from session
 		user = User.find session[:user_id]
 
+		#Check if user has a pending game, if so, kick him out ;)
+		games = user.games
+		games.each do |g|
+			if g.status!=2
+				render :plain=>"0"
+				return
+			end
+		end
+
 		#Get type, then find games available for that type. 0 is convincer, 1 is convincee
 		type = params[:type]
 
-		if(type == 0)
+		if(type == "0")
 			games_available = Game.games_available_for_convincer
 		else
 			games_available = Game.games_available_for_convincee
@@ -27,7 +36,7 @@ class GameController < ApplicationController
 		end
 
 		#Register the user to the game
-		if(type == 0)
+		if(type == "0")
 			game.add_convincer(user)
 		else 
 			game.convincee = user
@@ -37,12 +46,13 @@ class GameController < ApplicationController
 		if game.convincee != nil && game.convincer1 != nil && game.convincer2 != nil
 			#Set status to Running, or 1
 			game.status = 1
-			
-			#Save the game
-			game.save		
+				
 		end
 
-		knockout_timedout_users
+		#Save the game
+		game.save
+
+		render :plain=>"1"
 
 	end
 
@@ -55,10 +65,10 @@ class GameController < ApplicationController
 
 		#If game is 1, redirect him to message controller
 		if game.status == 1
-			redirect_to :controller => 'message', :action => 'index', :game_id => game.id
-		end
-
-
+			render :plain=>"1"
+		else
+			render :plain=>"0"
+		end	
 
 	end
 

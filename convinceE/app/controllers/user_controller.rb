@@ -20,7 +20,7 @@ class UserController < ApplicationController
 		session[:user_id] = user.id
 
 		#redirect to root
-		render :plain=> user.id
+		redirect_to :controller=>"game", :action => "index"
 
 	end
 end

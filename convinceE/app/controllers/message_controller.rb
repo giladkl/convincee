@@ -11,7 +11,7 @@ class MessageController < ApplicationController
   	
   	#-------for testing --------
  	@game_id = 1
- 	user = User.find(1)
+ 	user = User.find(session[:user_id])
  	#---------------------------
   	@messages = Message.messages_from_game(@game_id)
   	if @messages == nil
@@ -24,7 +24,11 @@ class MessageController < ApplicationController
   	user_id = session[:user_id]
   	#game_id = params[:game_id]
   	#assumptions
+<<<<<<< HEAD
   	#user_id = 3
+=======
+  	user_id = session[:user_id]
+>>>>>>> 473af5914ae4a7a24549975381861b455bb2cf3c
   	game_id = 1
 
   	#get message and vars

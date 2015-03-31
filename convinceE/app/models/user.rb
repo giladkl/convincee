@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
 		self.convincer1games + self.convincer2games
 	end
 
+	def games
+		self.convincer1games + self.convincer2games + self.convinceegames
+	end
 end

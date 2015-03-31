@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'message#index'
   get 'auth/:provider/callback', to: 'user#create_or_login_user'
   get 'game/index'
+  get 'game/check_game_status'
   get 'message/index'
+  get 'game/request_game'
 
   get 'login/index'
 
