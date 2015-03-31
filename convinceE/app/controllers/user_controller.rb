@@ -20,7 +20,7 @@ class UserController < ApplicationController
 		session[:user_id] = user.id
 
 		#redirect to root
-		render :plain=> user.id
+		render :plain=> session[:user_id] 
 
 	end
 end

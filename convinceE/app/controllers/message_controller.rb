@@ -11,7 +11,7 @@ class MessageController < ApplicationController
   	
   	#-------for testing --------
  	@game_id = 1
- 	user = User.find(1)
+ 	user = User.find(session[:user_id])
  	#---------------------------
   	@messages = Message.messages_from_game(@game_id)
   end
