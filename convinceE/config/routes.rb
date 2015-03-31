@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'message#index'
   get 'auth/:provider/callback', to: 'user#create_or_login_user'
   get 'game/index'
   get 'message/index'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   get 'login/index'
 
   post 'message/send_message'
+  get 'message/win'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
