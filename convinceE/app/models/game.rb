@@ -6,5 +6,21 @@ class Game < ActiveRecord::Base
 	belongs_to :convincee, :foreign_key=>"convincee_id", class_name: 'User'
 
 	has_many :messages, :foreign_key=>"game_id", class_name: 'Message'
+
+	scope :games_available_for_convincer, lambda { 
+    where(["convincer1_id IS NULL OR convincer2_id IS NULL"])
+    }
+
+    scope :games_available_for_convincee, lambda { 
+    where(["convincee_id IS NULL"])
+    }
+
+    def add_convincer(user)
+    	if self.convincer1 == nil
+    		self.convincer1 = user
+    	elsif self.convincer2 == nil
+    		self.convincer2 = user	
+    	end
+    end
 end	
 

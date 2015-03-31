@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330233634) do
+ActiveRecord::Schema.define(version: 20150331022410) do
 
   create_table "games", force: :cascade do |t|
     t.float    "amount"
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20150330233634) do
     t.datetime "updated_at",    null: false
     t.integer  "convincer1_id"
     t.integer  "convincer2_id"
+    t.datetime "lastupdatec1"
+    t.datetime "lastupdatec2"
+    t.datetime "lastupdatece"
+    t.integer  "status"
   end
 
   add_index "games", ["convincee_id"], name: "index_games_on_convincee_id"
