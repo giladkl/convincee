@@ -14,6 +14,9 @@ class MessageController < ApplicationController
  	user = User.find(session[:user_id])
  	#---------------------------
   	@messages = Message.messages_from_game(@game_id)
+  	if @messages == nil
+  		@messages = []
+  	end
   end
 
   def send_message
