@@ -46,11 +46,11 @@ class GameController < ApplicationController
 		user = User.find session[:user_id]
 		
 		#Find a game where the user is involved
-		game = Game.where("convincer1_id = ? OR convincer2_id = ? OR convincee_id = ?", user.id, user.id, user.id)
+		game = Game.where("convincer1_id = ? OR convincer2_id = ? OR convincee_id = ?", user.id, user.id, user.id).first
 
-		#TODO: If game is 1, redirect him to message controller
+		#If game is 1, redirect him to message controller
 		if game.status == 1
-			redirect_to :controller => 'thing', :action => 'edit', :id => 3, :something => 'else'
+			redirect_to :controller => 'message', :action => 'index', :game_id => game.id
 		end
 
 
