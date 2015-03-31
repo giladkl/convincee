@@ -21,14 +21,10 @@ class MessageController < ApplicationController
 
   def send_message
 
-  	user_id = session[:user_id]
   	#game_id = params[:game_id]
   	#assumptions
-<<<<<<< HEAD
   	#user_id = 3
-=======
   	user_id = session[:user_id]
->>>>>>> 473af5914ae4a7a24549975381861b455bb2cf3c
   	game_id = 1
 
   	#get message and vars
@@ -48,12 +44,10 @@ class MessageController < ApplicationController
 
   def win
     #stautus 2 means game is done
-    #input_winner = params[:winner]
+    input_winner = params[:winner].to_i
 
     #assumptions
     game_id = 2
-    input_winner = 1
-
     game = Game.find(game_id)
 
     #if convincer1 won
@@ -69,6 +63,9 @@ class MessageController < ApplicationController
       game.winner = winner
       winner.coins += (game.amount/2)
       loser.coins -= (game.amount/2)
+
+      winner.save
+      loser.save
       game.status = 2
     end
 

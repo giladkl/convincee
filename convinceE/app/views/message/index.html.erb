@@ -1,7 +1,7 @@
 
 <!-----	Show messages -->
 <% @messages.each do |message|%>
-<%= message.user.id.to_s + ":" + message.message %>
+<%= message.user.game_role(Game.find(@game_id)) + ":" + message.message %>
 <br>
 <%end%>
 <!--  End show messages -->
@@ -16,4 +16,6 @@
 <!----- end send form  -- -->
 
 
-<%=link_to("win" ,:action => "win") %>
+<%=link_to("1 win" ,:action => "win", :winner => 1) %>
+<br>
+<%=link_to("2 win" ,:action => "win", :winner => 2) %>

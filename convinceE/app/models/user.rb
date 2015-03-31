@@ -15,4 +15,14 @@ class User < ActiveRecord::Base
 	def games
 		self.convincer1games + self.convincer2games + self.convinceegames
 	end
+
+	def game_role(game)
+		if game.convincee == self
+			return "Convincee"
+		elsif game.convincer1 == self
+			return "Convincer1"
+		elsif game.convincer2 = self
+			return "Convincer2"
+		end
+	end
 end
