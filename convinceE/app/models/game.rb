@@ -15,6 +15,10 @@ class Game < ActiveRecord::Base
     where(["convincee_id IS NULL"])
     }
 
+    scope :game_with_user, lambda { |user_id|
+    where("convincer1_id = ? OR convincer2_id = ? OR convincee_id = ? AND status!=2", user_id, user_id, user_id).first
+    }
+
     def add_convincer(user)
     	if self.convincer1 == nil
     		self.convincer1 = user
