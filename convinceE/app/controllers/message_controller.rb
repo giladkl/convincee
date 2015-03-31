@@ -21,14 +21,11 @@ class MessageController < ApplicationController
 
   def send_message
 
-  	user_id = session[:user_id]
   	#game_id = params[:game_id]
   	#assumptions
-<<<<<<< HEAD
   	#user_id = 3
-=======
+
   	user_id = session[:user_id]
->>>>>>> 473af5914ae4a7a24549975381861b455bb2cf3c
   	game_id = 1
 
   	#get message and vars
