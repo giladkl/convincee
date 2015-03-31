@@ -1,5 +1,8 @@
 class GameController < ApplicationController
 	
+	def index
+	end
+
 	def request_game
 		#Get user from session
 		user = User.find session[:user_id]
@@ -11,6 +14,7 @@ class GameController < ApplicationController
 			games_available = Game.games_available_for_convincer
 		else
 			games_available = Game.games_available_for_convincee
+		end
 
 		unless games_available.length == 0
 			#Set the game to a the first available game (this is also the oldest record!)
@@ -27,6 +31,7 @@ class GameController < ApplicationController
 			game.add_convincer(user)
 		else 
 			game.convincee = user
+		end
 
 		#Check if game is done, if so, set status to 1
 		if game.convincee != nil && game.convincer1 != nil && game.convincer2 != nil

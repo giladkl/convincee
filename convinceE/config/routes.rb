@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'auth/:provider/callback', to: 'user#create'
-
+  get 'auth/:provider/callback', to: 'user#create_or_login_user'
+  get 'game/index'
   get 'message/index'
 
   get 'login/index'
