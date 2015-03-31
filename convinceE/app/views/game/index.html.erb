@@ -1,13 +1,80 @@
+<script>
+$( document ).ready(function() {
+	window.onerror = function(msg, url, linenumber) {
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
+}
+	
+});
+function checkGameStatus(){		
+
+		$.ajax({
+			url: "<%=request.base_url%>/game/check_game_status",
+			data: {
+
+			},
+			type: "GET",
+			dataType: "text",
+			success: function(ret) {
+				if(ret == "1" || ret == 1){
+					alert("success");
+				}
+
+
+			},
+			error: function(xhr, status, errorThrown) {
+				alert("Sorry, there was a problem!!!!!!");
+				alert("Error: " + errorThrown);
+				alert("Status: " + status);
+				alert(JSON.stringify(xhr));
+			},
+                    // code to run regardless of success or failure
+                    complete: function(xhr, status) {
+                    }
+                });
+	}
+	function registerForGame(type){
+		alert(type);
+		$.ajax({
+			url: "<%=request.base_url%>/game/request_game",
+			data: {
+				type: type
+			},
+			type: "GET",
+			dataType: "text",
+			success: function(ret) {
+				setInterval (checkGameStatus, 500);
+				alert(ret);
+
+			},
+			error: function(xhr, status, errorThrown) {
+				alert("Sorry, there was a problem!");
+				alert("Error: " + errorThrown);
+				alert("Status: " + status);
+				alert(JSON.stringify(xhr));
+			},
+                    // code to run regardless of success or failure
+                    complete: function(xhr, status) {
+                    }
+                });
+	}
+
+</script>
+
+
+
+
 <div class="row" style="margin-top:100px;">
-		<button class="col-md-4 col-md-offset-4 btn btn-large btn-primary" style="height:150px; font-size:30pt; " name="Convincer" type="submit">
+		<button class="col-md-4 col-md-offset-4 btn btn-large btn-primary" style="height:150px; font-size:30pt; " name="Convincer" type="submit" onclick="registerForGame('0')">
     		<span>Convincer</span>
     		<i class="fa fa-comment" style="font-size:30px; vertical-align: middle;"></i>
     	</button>
 </div>
 <div class="row" style="margin-top:65px">
-		<button class="col-md-4 col-md-offset-4 btn btn-large btn-primary" style="height:150px; font-size:30pt;"  name="ddd" type="submit">
+		<button class="col-md-4 col-md-offset-4 btn btn-large btn-primary" style="height:150px; font-size:30pt;"  name="ddd" type="submit" onclick="registerForGame('1')">
     		<span>Convincee</span>
     		<i class="fa fa-comment" style="font-size:30px; vertical-align: middle;"></i>
     	</button>
 </div>
+
 
