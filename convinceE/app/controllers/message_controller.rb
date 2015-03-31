@@ -10,7 +10,7 @@ class MessageController < ApplicationController
  	#-------------------------------------------------
   	
   	#-------for testing --------
- 	@game_id = 1
+ 	@game_id = session[:game_id]
  	user = User.find(session[:user_id])
  	#---------------------------
   	@messages = Message.messages_from_game(@game_id)
@@ -25,7 +25,7 @@ class MessageController < ApplicationController
   	#assumptions
   	#user_id = 3
   	user_id = session[:user_id]
-  	game_id = 1
+  	game_id = session[:game_id]
 
   	#get message and vars
   	message_text = params[:message]

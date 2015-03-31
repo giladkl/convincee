@@ -65,6 +65,7 @@ class GameController < ApplicationController
 
 		#If game is 1, redirect him to message controller
 		if game.status == 1
+			session[:game_id] = game.id
 			render :plain=>"1"
 		else
 			render :plain=>"0"

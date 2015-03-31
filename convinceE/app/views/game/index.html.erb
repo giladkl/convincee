@@ -17,7 +17,7 @@ function checkGameStatus(){
 			dataType: "text",
 			success: function(ret) {
 				if(ret == "1" || ret == 1){
-					alert("success");
+					window.location =  "<%=request.base_url%>/message/index"
 				}
 
 
